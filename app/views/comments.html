@@ -1,0 +1,87 @@
+<br />
+<div class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <h2>{{ appSettings.title }}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" style="color: Dodgerblue">
+                    <i class="fas fa-filter"></i>
+                </span>
+            </div>
+            <input type="text" class="form-control" ng-model="customerFilter.comments.name" placeholder="Fitro por Nome do Usuário">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+            </thead>
+            <tbody>
+                <tr ng-repeat="comm in posts.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))
+                               | filter:customerFilter" class="repeat-animation">
+                    <td>
+                        <div>
+                            <div class="col col-md">
+                                <h5>
+                                    <span class="badge badge-info">
+                                        Post: {{ comm.postId }} : {{ comm.comments.length }} Comentários
+                                    </span>
+                                    </h5>
+                            </div>
+                            <div class="col col-sm text-right">
+                                <button class="btn btn-sm btn-info" ng-click="showDetails = ! showDetails">
+                                    <i class="fas " ng-class="showDetails ? 'fa-compress-arrows-alt' : 'fa-expand-arrows-alt'"></i>
+                                    {{showDetails ? "Esconder comentarios" : "Mostrar comentarios" }}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="animate-show-hide" ng-show="showDetails">
+                            <div ng-repeat="c in comm.comments" class="container-fluid p-1">
+                                <div class="row">
+                                    <div class="card col-12">
+                                        <div class="card-header">
+                                            <span style="font-size: 18px; color: Dodgerblue;">
+                                              <i class="fas fa-user"></i> 
+                                            </span>
+                                            {{c.name}}
+                                        </div>
+                                        <div class="card-body">
+                                            <blockquote class="blockquote mb-0">
+                                                <p class="card-text">
+                                                    {{c.body}}
+                                                </p>
+                                                <footer class="blockquote-footer">
+                                                    {{c.email}}
+                                                </footer>
+                                            </blockquote>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <pager uib-pagination 
+            total-items="(posts | filter: customerFilter).length" 
+            ng-model="currentPage" 
+            max-size="maxSize" 
+            class="pagination-sm" 
+            boundary-links="true" 
+            items-per-page="itemsPerPage"
+            first-text="Primeiro"
+            last-text="Ultimo"
+            next-text="Próximo"
+            previous-text="Anterior">
+        </pager >
+    </div>
+</div>
+<br/>
+<br/><br/>
+<footer>Version: {{ appSettings.version }} </footer>
