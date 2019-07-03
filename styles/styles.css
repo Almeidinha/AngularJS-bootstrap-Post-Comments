@@ -58,4 +58,11 @@ main {
     border-color: #337ab7;
 }
 
+.backgroundGray {
+    background-color: lightgrey;
+}
+
+.backgroundWhite {
+    background-color: white;
+}
 

@@ -25,8 +25,8 @@
                 <tr ng-repeat="comm in posts.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))
                                | filter:customerFilter" class="repeat-animation">
                     <td>
-                        <div>
-                            <div class="col col-md">
+                        <div ng-class="showDetails ? 'backgroundGray' : 'backgroundWhite'">
+                            <div class="col col-md" >
                                 <h5>
                                     <span class="badge badge-info">
                                         Post: {{ comm.postId }} : {{ comm.comments.length }} Comentários
