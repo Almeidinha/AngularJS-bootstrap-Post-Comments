@@ -14,19 +14,19 @@
         function init() {
             commentsFactory.getComments().then(function(response) {
                     
-            var post = {};
+            let post = {};
 
-            for (var i = 0, l = response.data.length; i < l; i++) {
+            for (let i = 0, l = response.data.length; i < l; i++) {
 
-                var tt = $scope.posts.filter(p => p.postId === response.data[i].postId);
+                const tt = $scope.posts.filter(p => p.postId === response.data[i].postId);
 
-                if (tt.length == 0)  {
-                    post.postId =   response.data[i].postId;
+                if (tt.length === 0)  {
+                    post.postId = response.data[i].postId;
                     post.comments = response.data.filter(p => p.postId === response.data[i].postId);
                     $scope.posts.push(post);
-                    var post = {};
+                    post = {};
                 }
-            };
+            }
             
             $scope.totalItems = $scope.posts.length;
                                     
@@ -34,7 +34,6 @@
                     $log.log(data.error + ' ' + status);
             });
         }
-        
 
         init();
         

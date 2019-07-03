@@ -1,7 +1,7 @@
 (function() {
-    var commentsFactory = function($http) {
+    const commentsFactory = function($http) {
     
-        var factory = {};
+        const factory = {};
         
         factory.getComments = function() {
             return $http.get('http://jsonplaceholder.typicode.com/comments');
